@@ -3,8 +3,9 @@ package calendar;
 public class Weekday {
 
 	private MyCalendar c;
-	String[] days = { "Friday", "Saturday", "Sunday", "Monday", "Tuesday",
-			"Wednesday", "Thursday" };
+	String[] days = { "friday", "saturday", "sunday", "monday", "tuesday",
+			"wednesday", "thursday" };
+	MyValidate val = new MyValidate();
 
 	public Weekday(MyCalendar c) {
 		this.c = c;
@@ -12,7 +13,7 @@ public class Weekday {
 
 	private int numberOfLeapyears() {
 		int leapYears = 0;
-		for (int i = c.getMinYear(); i < c.getYear(); i++) {
+		for (int i = val.getMinYear(); i < c.getYear(); i++) {
 			if (isLeapYear(i))
 				leapYears++;
 		}
@@ -48,7 +49,7 @@ public class Weekday {
 			if (month == 2)
 				break;
 
-			if (c.isLeapYear()) {
+			if (val.isLeapYear(c.getYear())) {
 				days += 29;
 			} else
 				days += 28;
@@ -97,7 +98,8 @@ public class Weekday {
 	}
 
 	public String getWeekday() {
-		int numberOfDays = (c.getYear() - c.getMinYear()) * 365
+	
+		int numberOfDays = (c.getYear() - val.getMinYear()) * 365
 				+ numberOfLeapyears() + numberOfDaysCurrentYear();
 		return days[numberOfDays % 7];
 
