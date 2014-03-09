@@ -13,7 +13,7 @@ public class Weekday {
 
 	private int numberOfLeapyears() {
 		int leapYears = 0;
-		for (int i = val.getMinYear(); i < c.getYear(); i++) {
+		for (int i = val.getStartYear(); i < c.getYear(); i++) {
 			if (isLeapYear(i))
 				leapYears++;
 		}
@@ -99,7 +99,7 @@ public class Weekday {
 
 	public String getWeekday() {
 	
-		int numberOfDays = (c.getYear() - val.getMinYear()) * 365
+		int numberOfDays = (c.getYear() - val.getStartYear()) * 365
 				+ numberOfLeapyears() + numberOfDaysCurrentYear();
 		return days[numberOfDays % 7];
 

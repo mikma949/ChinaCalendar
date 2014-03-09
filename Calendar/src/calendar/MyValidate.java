@@ -2,38 +2,7 @@ package calendar;
 
 public class MyValidate {
 	private int year, month, day, daysInMonth;
-
-	public int getYear() {
-		return year;
-	}
-
-	public MyValidate() {
-
-	}
-
-	public int getMonth() {
-		return month;
-	}
-
-	public int getDay() {
-		return day;
-	}
-
-	private int minYear = 1600, maxYear = 4000;
-
-	public int getMinYear() {
-		return minYear;
-	}
-
-	public int getMaxYear() {
-		return maxYear;
-	}
-
-	// public MyValidate(int year, int month, int day) {
-	// this.year = year;
-	// this.month = month;
-	// this.day = day;
-	// }
+	private int minYear = 1900, maxYear = 2150 ,startYear=1600; 
 
 	public boolean validate() {
 		return (checkYear(year) && checkMonth(month) && checkDay(day));
@@ -41,12 +10,14 @@ public class MyValidate {
 
 	public boolean checkDay(int day) {
 		// TODO Auto-generated method stub
-		
+
 		switch (month) {
 		case 2:
-			if(!isLeapYear(year))setDaysInMonth(28);
-			if(isLeapYear(year))setDaysInMonth(29);
-			
+			if (!isLeapYear(year))
+				setDaysInMonth(28);
+			if (isLeapYear(year))
+				setDaysInMonth(29);
+
 			if (!isLeapYear(year) && (day < 1 || day > 28)) {
 				invalidDay();
 				return false;
@@ -55,7 +26,7 @@ public class MyValidate {
 				invalidDay();
 				return false;
 			}
-			
+
 			break;
 		case 4:
 		case 6:
@@ -66,7 +37,7 @@ public class MyValidate {
 				invalidDay();
 				return false;
 			}
-			
+
 			break;
 		default:
 			setDaysInMonth(31);
@@ -74,7 +45,7 @@ public class MyValidate {
 				invalidDay();
 				return false;
 			}
-			
+
 			break;
 		}
 
@@ -84,7 +55,7 @@ public class MyValidate {
 
 	private void setDaysInMonth(int daysInMonth) {
 		// TODO Auto-generated method stub
-		this.daysInMonth=daysInMonth;
+		this.daysInMonth = daysInMonth;
 	}
 
 	public boolean checkMonth(int month) {
@@ -129,6 +100,34 @@ public class MyValidate {
 
 	public int getDaysInMonth() {
 		return daysInMonth;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public MyValidate() {
+
+	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public int getMinYear() {
+		return minYear;
+	}
+
+	public int getMaxYear() {
+		return maxYear;
+	}
+
+	public int getStartYear() {
+		return startYear;
 	}
 
 

@@ -90,22 +90,21 @@ public class GetUserInputSwing extends JPanel {
 			if (!val.checkYear(Integer.parseInt(jyear.getText()))) {
 				jresult.setText("Year has to be between " + val.getMinYear()
 						+ "-" + val.getMaxYear());
-			
+
 			}
 			if (!val.checkMonth(Integer.parseInt(jmonth.getText()))) {
 				jresult.setText("Month has to be between 1-12");
-				
+
 			}
 			if (!val.checkDay(Integer.parseInt(jday.getText()))) {
 				jresult.setText("Day has to be between 1-"
 						+ val.getDaysInMonth());
-	
+
 			}
-			System.out.println(val.validate());
 			if (val.validate())
 				output(val);
 		} catch (NullPointerException n) {
-			jresult.setText("Tomorrow is out of bounds");
+			jresult.setText("Date is out of bounds");
 		} catch (Exception e) {
 			// TODO: handle exception
 			jresult.setText("Invalid input");
