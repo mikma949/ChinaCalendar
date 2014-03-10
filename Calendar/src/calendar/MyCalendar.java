@@ -5,15 +5,13 @@ public class MyCalendar {
 	private int year, month, day;
 	private MyValidate val;
 
-	public MyCalendar(int inYear, int inMonth, int inDay) {
-		year = inYear;
-		month = inMonth;
-		day = inDay;
-
+	public MyCalendar() {
+		val = new MyValidate();
 	}
 
+
 	// Returns {0,0,0} if invalid date.
-	public int[] getNextDate(MyValidate val) {
+	public int[] getNextDate() {
 		if (val.checkDay(day + 1)) {
 			day++;
 		} else if (val.checkMonth(month + 1)) {
@@ -45,5 +43,46 @@ public class MyCalendar {
 	public int[] getDate() {
 		int[] date = { year, month, day };
 		return date;
+	}
+
+	public boolean setYear(int year) {
+		if (val.checkYear(year)) {
+			this.year = year;
+			System.out.println("MyCal:setYear: " + this.year);
+			return true;
+		}
+		return false;
+	}
+
+	public boolean setMonth(int month) {
+		if (val.checkMonth(month)) {
+			this.month = month;
+			return true;
+		}
+		return false;
+	}
+
+	public boolean setDay(int day) {
+		if (val.checkDay(day)) {
+			this.day = day;
+			return true;
+		}
+		return false;
+	}
+	public boolean validate(){
+		return (val.checkYear(year) && val.checkMonth(month) && val.checkDay(day));
+	}
+	public int getDaysInMonth(){
+		return val.getDaysInMonth();
+	}
+
+	public int getMaxYear() {
+		// TODO Auto-generated method stub
+		return val.getMaxYear();
+	}
+
+	public int getMinYear() {
+		// TODO Auto-generated method stub
+		return val.getMinYear();
 	}
 }

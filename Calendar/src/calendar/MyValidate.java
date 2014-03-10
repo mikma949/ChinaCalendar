@@ -4,10 +4,6 @@ public class MyValidate {
 	private int year, month, day, daysInMonth;
 	private int minYear = 1900, maxYear = 2150 ,startYear=1600; 
 
-	public boolean validate() {
-		return (checkYear(year) && checkMonth(month) && checkDay(day));
-	}
-
 	public boolean checkDay(int day) {
 		// TODO Auto-generated method stub
 
@@ -73,7 +69,7 @@ public class MyValidate {
 		// TODO Auto-generated method stub
 		if (year >= minYear && year <= maxYear) {
 			this.year = year;
-
+			System.out.println("MyVal:checkYear: valid year");
 			return true;
 		}
 		// System.out.println("Invalid year!");

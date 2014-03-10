@@ -83,26 +83,24 @@ public class GetUserInputSwing extends JPanel {
 
 	private void getInput() {
 		// TODO Auto-generated method stub
-		MyValidate val = new MyValidate();
+		MyCalendar cal = new MyCalendar();
 
 		try {
 
-			if (!val.checkYear(Integer.parseInt(jyear.getText()))) {
-				jresult.setText("Year has to be between " + val.getMinYear()
-						+ "-" + val.getMaxYear());
-
+			if (!cal.setYear(Integer.parseInt(jyear.getText()))) {
+				jresult.setText("Year has to be between " + cal.getMinYear()
+						+ "-" + cal.getMaxYear());
 			}
-			if (!val.checkMonth(Integer.parseInt(jmonth.getText()))) {
+			if (!cal.setMonth(Integer.parseInt(jmonth.getText()))) {
 				jresult.setText("Month has to be between 1-12");
-
 			}
-			if (!val.checkDay(Integer.parseInt(jday.getText()))) {
+			if (!cal.setDay(Integer.parseInt(jday.getText()))) {
 				jresult.setText("Day has to be between 1-"
-						+ val.getDaysInMonth());
-
+						+ cal.getDaysInMonth());
 			}
-			if (val.validate())
-				output(val);
+			if (cal.validate())
+				output(cal);
+			
 		} catch (NullPointerException n) {
 			jresult.setText("Date is out of bounds");
 		} catch (Exception e) {
@@ -112,13 +110,12 @@ public class GetUserInputSwing extends JPanel {
 		}
 	}
 
-	private void output(MyValidate val) throws Exception {
-
-		MyCalendar c = new MyCalendar(val.getYear(), val.getMonth(),
-				val.getDay());
+	private void output(MyCalendar c) throws Exception {
 		int[] date;
 		// date = c.getDate();
-		date = c.getNextDate(val);
+		
+		//If date is out of bounds returns {0,0,0}
+		date = c.getNextDate();
 		int[] zero = { 0, 0, 0 };
 		if (Arrays.equals(date, zero)) {
 			throw new NullPointerException();
